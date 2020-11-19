@@ -3,8 +3,8 @@
   = line_chart current_user.student_lessons.group_by_day(:created_at).count
   .d-flex.justify-content-between.mt-3
     %p.bg-success.text-white.p-1.pl-2.pr-2.rounded Visited total: #{current_user.student_lessons.count}
-    %p.bg-warning.p-1.pl-2.pr-2.rounded Visited in day max: #{current_user.student_lessons.group_by_day(:created_at).count.max_by(&:second).second}
-    %p.bg-danger.text-white.p-1.pl-2.pr-2.rounded Visited in day min: #{current_user.student_lessons.group_by_day(:created_at).count.min_by(&:second).second}
+    %p.bg-warning.p-1.pl-2.pr-2.rounded Visited in day max: #{current_user.student_lessons.group_by_day(:created_at).count.map(&:second).max || 0}
+    %p.bg-danger.text-white.p-1.pl-2.pr-2.rounded Visited in day min: #{current_user.student_lessons.group_by_day(:created_at).count.map(&:second).min || 0}
 - if current_user.student?
   = render partial: 'lessons/partials/in_progress', locals: { lessons: current_user.lessons }
 .mt-5.mb-5
