@@ -1,0 +1,7 @@
+.center.mt-5
+  %h2 Join Course
+  = form_tag(student_courses_path) do
+    .form-group
+      = label_tag :code, 'Code'
+      = text_field_tag :code, '', class: 'form-control'
+    = submit_tag 'Join', class: 'btn btn-success'

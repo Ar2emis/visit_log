@@ -1,0 +1,20 @@
+.card.mt-2.shadow-sm.p-3.center
+  .d-flex
+    %h3.w-100= lesson.lesson_type.humanize + (lesson.name.present? ? ": #{lesson.name}" : '')
+    - if current_user.teacher?
+      .dropdown
+        %i.fas.fa-ellipsis-h#dropdownMenuLink{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+        .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuLink"}
+          = link_to 'Edit', edit_lesson_path(lesson), class: 'dropdown-item'
+          = link_to 'Delete', lesson_path(lesson), method: :delete, class: 'dropdown-item'
+  .d-flex.justify-content-between.ml-3.mr-3.mt-2
+    %div.d-flex.align-items-center
+      %p.bg-warning.rounded.pl-1.pr-1 Starts at:
+      %p.ml-1= lesson.starts_at.strftime('%a, %e %b %Y %R')
+    %div.d-flex.align-items-center
+      %p.bg-danger.text-white.rounded.pl-1.pr-1 Ends at:
+      %p.ml-1= lesson.ends_at.strftime('%a, %e %b %Y %R')
+  - if lesson.now? && current_user.student?
+    = link_to 'Visit', lesson_student_lessons_path(lesson), method: :post, remote: true, class: 'btn btn-success'
+  - elsif !lesson.not_started? && current_user.teacher?
+    = link_to 'Visited', lesson_student_lessons_path(lesson), class: 'btn btn-success'

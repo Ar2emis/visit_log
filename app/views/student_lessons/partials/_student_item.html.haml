@@ -1,0 +1,8 @@
+.card.p-3.d-flex.flex-row.justify-content-between.shadow-sm
+  %div.d-flex
+    = simple_form_for(item, as: :student_lesson, url: student_lesson_path(item), remote: true, authenticity_token: true, html: { class: 'd-flex align-items-center'}) do |f|
+      = f.input_field :visited, 'onChange': "$.rails.fire(this.form, 'submit')"
+    %h5.ml-2.mb-0= item.student.name
+  %div.d-flex
+    %p.bg-warning.rounded.pl-1.pr-1.mb-0 Visited at:
+    %p.ml-1.mb-0= item.created_at.strftime('%R')

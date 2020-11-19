@@ -1,0 +1,11 @@
+.center.mt-5
+  %h2 Sign up
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.input :email, autocomplete: "email"
+    = f.input :name, autocomplete: "name"
+    = f.input :type, collection: ['Student', 'Teacher']
+    = f.input :password, autocomplete: "new-password"
+    = f.input :password_confirmation, autocomplete: "new-password"
+    = f.button :submit, "Sign up"
+    %div
+      = render "devise/shared/links"

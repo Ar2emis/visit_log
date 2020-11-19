@@ -1,0 +1,17 @@
+%footer.navbar-inverse.bg-dark.footer
+  .container.mt-3.justify-content-between
+    .row
+      .col-sm-9
+        %ul.list-inline.general-align
+          %li.list-inline-item
+            = link_to 'Courses', root_path, class: 'nav-link'
+          %li.list-inline-item
+            = link_to 'Settings', edit_user_registration_path, class: 'nav-link'
+            %li.list-inline-item
+              = link_to 'Sign up', new_user_registration_path, class: 'nav-link'
+            %li.list-inline-item
+              = link_to 'Sign in', new_user_session_path, class: 'nav-link'
+      .col-sm-3
+        %p.mt-1.text-white support@examle.com
+        %p.text-white (555)-555-5555
+

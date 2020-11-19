@@ -1,0 +1,3 @@
+.center.mt-5
+  %h2 New Lesson
+  = render partial: 'lessons/partials/form', locals: { lesson: @lesson || Lesson.new, course: @course }

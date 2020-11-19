@@ -1,0 +1,33 @@
+@import "google_fonts";
+@import "~bootstrap/scss/bootstrap";
+@import "flatpickr/dist/flatpickr.css";
+@import "simple_form";
+@import "courses";
+@import '@fortawesome/fontawesome-free';
+
+body {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content_wraper {
+    flex: 1;
+}
+
+.footer {
+    height: fit-content;
+    a {
+        color:white;
+    };
+
+    a:hover {
+        color:gold;
+    };
+}
+
+.pt-8 {
+    padding-top: 80px;
+}

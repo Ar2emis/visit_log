@@ -1,0 +1,6 @@
+= simple_form_for(lesson, as: :lesson, url: lesson.persisted? ? lesson_path(lesson) : course_lessons_path(course), validate: true, html: { method: lesson.persisted? ? :put : :post })  do |f|
+  = f.input :name, autocomplete: "name"
+  = f.input :lesson_type, as: :radio_buttons, collection: Lesson.lesson_types.keys.map { |key| [key, key.humanize]}, label_method: :second, value_method: :first, wrapper: :vertical_collection_inline, default: true
+  = f.input :starts_at, as: :string, type: :text, input_html: { data: { behavior: "flatpickr" } }
+  = f.input :ends_at, as: :string, type: :text, input_html: { data: { behavior: "flatpickr" } }
+  = f.button :submit, lesson.persisted? ? 'Update' : 'Create'

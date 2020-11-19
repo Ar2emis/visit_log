@@ -1,0 +1,23 @@
+.mt-5
+  %h2.d-flex.justify-content-center
+    Edit Profile
+  .row.mb-60.d-flex.justify-content-around.mt-5
+    .col-sm-5
+      %h4.mb-3 Profile
+      = simple_form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: { method: :put, id: 'email-form'  }) do |f|
+        %div
+          %p Account Type
+          %p.ml-1= resource.type
+        = f.input :email, autocomplete: 'email'
+        = f.input :name, autocomplete: 'name'
+        = f.button :submit, 'Save'
+    .col-sm-5
+      %h4.mb-3 Password
+      = simple_form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: { method: :put, id: 'password-form' }) do |f|
+        = f.input :current_password, autocomplete: 'off'
+        = f.input :password, autocomplete: 'off'
+        = f.input :password_confirmation, autocomplete: 'off'
+        = f.button :submit, 'Save'
+    .col-sm-3.center.mt-3.mb-5
+      %p Remove Account
+      = link_to 'Remove my Account', registration_path(resource_name), method: :delete, class: 'btn btn-danger'

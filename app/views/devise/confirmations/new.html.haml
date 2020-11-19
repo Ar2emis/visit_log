@@ -1,0 +1,7 @@
+.center.mt-5
+  %h2 Resend confirmation instructions
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, validate: true) do |f|
+    = f.input :email, autocomplete: "email"
+    = f.button :submit, "Resend confirmation instructions"
+    %div
+      = render "devise/shared/links"

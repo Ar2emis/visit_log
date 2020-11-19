@@ -1,0 +1,9 @@
+.center.mt-5
+  %h2 Change your password
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+    = f.hidden_field :reset_password_token
+    = f.input :password, autocomplete: 'new-password'
+    = f.input :password_confirmation, autocomplete: 'new-password'
+    = f.button :submit, 'Save'
+    %div
+      = render "devise/shared/links"

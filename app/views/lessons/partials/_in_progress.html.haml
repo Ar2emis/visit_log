@@ -1,0 +1,8 @@
+.container.mt-5.mb-5
+  .mt-3
+    %h2.mb-0.text-success In progress
+    %hr.mt-0.bg-success
+  - if lessons.in_progress.empty?
+    %p.center.text-secondary No lessons in progress...
+  - else
+    = render partial: 'lessons/partials/lesson_item', collection: lessons.in_progress, as: :lesson

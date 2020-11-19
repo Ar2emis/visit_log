@@ -1,0 +1,8 @@
+= simple_form_for(course, as: :course, url: course.persisted? ? course_path(course) : courses_path(course), html: { method: course.persisted? ? :put : :post }, validate: true)  do |f|
+  = f.input :name, autocomplete: "name"
+  - if course.persisted?
+    %div
+      %p Course code: #{course.code}
+  .d-flex.justify-content-center
+    = f.input :image, as: :file, input_html: { class: 'ml-5'}
+  = f.button :submit, course.persisted? ? 'Update' : 'Create'

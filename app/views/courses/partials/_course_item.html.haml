@@ -1,0 +1,10 @@
+.col-lg-3.col-md-4.col-sm-12.mt-3.course_item
+  .card
+    %div.p-2.center
+      %div.border.bg-light
+        - if course.image.present?
+          = image_tag course.image_url(:small), class: 'img-fluid'
+        - else
+          %div{style: " width: 100%; height: 150px; background-color: #{['#016ecd', '#4aafcd', '#5ab75c', '#faa632', '	#da4f4a', '#7ac142'].sample}"}
+      %h5.mt-3
+        = link_to course.name, course_path(course), class: 'stretched-link'

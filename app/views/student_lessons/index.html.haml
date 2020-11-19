@@ -1,0 +1,6 @@
+.container.mt-5.mb-5
+  %h3.center= @lesson.lesson_type.humanize + (@lesson.name.present? ? ": #{@lesson.name}" : '')
+  %h3.mb-0.mt-4 Students
+  %hr.mt-0
+  .mt-3
+    = render partial: 'student_lessons/partials/student_item', collection: @lesson.student_lessons, as: :item

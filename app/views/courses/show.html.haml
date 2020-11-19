@@ -1,0 +1,40 @@
+.container.mt-3
+  .card.shadow-sm
+    %div.p-2.center
+      %div.border.bg-light
+        - if @course.image.present?
+          = image_tag @course.image_url(:large), class: 'img-fluid'
+        - else
+          %div{style: "background-color: #{['#016ecd', '#4aafcd', '#5ab75c', '#faa632', '	#da4f4a', '#7ac142'].sample}", class: 'course_title'}
+      %div
+        %h2.mt-3= @course.name
+        %h5= @course.teacher.name
+        .dropdown
+          %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+            Settings
+          .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuLink"}
+            - if current_user.teacher?
+              = link_to 'Edit', edit_course_path(@course), class: 'dropdown-item'
+              = link_to 'Delete', course_path(@course), method: :delete, class: 'dropdown-item'
+            - else
+              = link_to 'Leave', student_course_path(@course), method: :delete, class: 'dropdown-item'
+- if current_user.teacher?
+  .container.mt-3.d-flex.justify-content-center
+    = link_to 'Schedule a lesson', new_course_lesson_path(@course), class: 'btn btn-success'
+= render partial: 'lessons/partials/in_progress', locals: { lessons: @course.lessons }
+.container.mt-5.mb-5
+  .mt-3
+    %h2.mb-0.text-primary Planned
+    %hr.mt-0.bg-primary
+  - if @course.lessons.planned.empty?
+    %p.center.text-secondary No lessons is planned yet...
+  - else
+    = render partial: 'lessons/partials/lesson_item', collection: @course.lessons.planned, as: :lesson
+.container.mt-5.mb-5
+  .mt-3
+    %h2.mb-0.text-secondary Cancelled
+    %hr.mt-0.bg-secondary
+  - if @course.lessons.cancelled.empty?
+    %p.center.text-secondary No lessons is finished yet...
+  - else
+    = render partial: 'lessons/partials/lesson_item', collection: @course.lessons.cancelled, as: :lesson
